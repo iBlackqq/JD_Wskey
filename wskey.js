@@ -1,19 +1,21 @@
 /**
- * 1、打开App，自动获取 wskey 上传
- * 2、点击APP-个人中心，点消息，自动捕抓 wskey 上传
+ * 1、打开App，自动捕抓 wskey 上传
+ * 2、点击APP-个人中心，或 个人中心 下拉刷新，自动捕抓 wskey 上传
  * 注：如有变更才会上传，如果 wskey 没变，不会重复上传。
-
+ *
+ * ⚠️ 个人脚本，他人使用前请修改bottoken
  */
 
-const $ = new Env('♨️上传 wskey');
+const $ = new Env('♨️京东上传 Wskey');
 let CK = $request.headers['Cookie'] || $request.headers['cookie'];
 
-const pin = CK.match(/pin=([^=;]+?);/)[1];
+const respBody = $.toObj($response.body);
+const pin = respBody.userInfoSns.unickName;
 const key = CK.match(/wskey=([^=;]+?);/)[1];
-const _TGUserID = $.getData('JDGiaoBot');
+const _TGUserID = $.getData('id77_TGUserID');
 
-$.TGBotToken = '5148458134:AAGEsL6rhysC7opANKjjrNKLw4eidQaPD3w';
-$.TGUserIDs = [1031901918];
+$.TGBotToken = $.getData('lkJdUploadWskeyBotToken');
+$.TGUserIDs = !$.getData('lkJdUploadWskeyToTgUserid') ? ["-1001241545347"] : JSON.parse($.getData('lkJdUploadWskeyToTgUserid'));
 if (_TGUserID) {
   $.TGUserIDs.push(_TGUserID);
 }
@@ -77,7 +79,7 @@ if (_TGUserID) {
         await showMsg(userId);
       }
     } else {
-      console.log(`♨️wskey 没有改变`);
+      console.log(`♨️wskey 没有改变\n${cookie}`);
     }
 
     return;
@@ -110,14 +112,14 @@ function updateCookie(cookie, TGUserID) {
         } else {
           data = JSON.parse(data);
           if (data.ok) {
-            console.log(`已发送 wskey 至 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}🎉\n`);
-            $.resData = `已发送 wskey 至 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}🎉`;
+            console.log(`🎉wskey 提交成功\n\n${cookie}`);
+            $.resData = `🎉wskey 提交成功 ${cookie}`;
           } else if (data.error_code === 400) {
-            console.log(`发送失败，请联系 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}。\n`);
-            $.resData = `发送失败，请联系 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}。`;
+            console.log(`⚠️ wskey 提交失败，请联系 ${TGUserID}。\n\n${cookie}`);
+            $.resData = `⚠️ wskey 提交失败，请联系 ${TGUserID}。${cookie}`;
           } else if (data.error_code === 401) {
-            console.log(`${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4} bot token 填写错误。\n`);
-            $.resData = `${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4} bot token 填写错误。`;
+            console.log(`${TGUserID} Telegram Bot token 填写错误。\n`);
+            $.resData = `${TGUserID} Telegram Bot token 填写错误。`;
           }
         }
       } catch (e) {
@@ -179,7 +181,7 @@ function Env(name, opts) {
       this.logSeparator = '\n';
       this.startTime = new Date().getTime();
       Object.assign(this, opts);
-      this.log('', `🔔${this.name}, 开始!`);
+      this.log('', `${this.name}, 开始!`);
     }
 
     isNode() {
@@ -625,7 +627,7 @@ function Env(name, opts) {
         }
       }
       if (!this.isMuteLog) {
-        let logs = ['', '==============📣系统通知📣=============='];
+        let logs = ['', '================系统通知================'];
         logs.push(title);
         subt ? logs.push(subt) : '';
         desc ? logs.push(desc) : '';
@@ -657,7 +659,7 @@ function Env(name, opts) {
     done(val = {}) {
       const endTime = new Date().getTime();
       const costTime = (endTime - this.startTime) / 1000;
-      this.log('', `🔔${this.name}, 结束! 🕛 ${costTime} 秒`);
+      this.log('', `${this.name}, 结束! 🕛 ${costTime} 秒`);
       this.log();
       if (this.isSurge() || this.isQuanX() || this.isLoon()) {
         $done(val);
