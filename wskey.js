@@ -110,14 +110,14 @@ function updateCookie(cookie, TGUserID) {
         } else {
           data = JSON.parse(data);
           if (data.ok) {
-            console.log(`已发送 wskey 至 ${TGUserID}🎉\n`);
-            $.resData = `已发送 wskey 至 ${TGUserID}🎉`;
+            console.log(`已发送 wskey 至 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}🎉\n`);
+            $.resData = `已发送 wskey 至 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}🎉`;
           } else if (data.error_code === 400) {
-            console.log(`发送失败，请联系 ${TGUserID}。\n`);
-            $.resData = `发送失败，请联系 ${TGUserID}。`;
+            console.log(`发送失败，请联系 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}。\n`);
+            $.resData = `发送失败，请联系 ${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4}。`;
           } else if (data.error_code === 401) {
-            console.log(`${TGUserID} bot token 填写错误。\n`);
-            $.resData = `${TGUserID} bot token 填写错误。`;
+            console.log(`${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4} bot token 填写错误。\n`);
+            $.resData = `${5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4} bot token 填写错误。`;
           }
         }
       } catch (e) {
