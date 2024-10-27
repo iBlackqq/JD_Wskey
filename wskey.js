@@ -19,8 +19,8 @@ const key = CK.match(/wskey=([^=;]+?);/)[1];
 const _TGUserID = $.getData('id77_TGUserID');
 
 // 从 BoxJS 中读取变量
-$.TGBotToken = $.getData('TGBotToken');
-$.TGUserIDs = JSON.parse($.getData('TGUserIDs') || '[]');
+$.TGBotToken = $.getData('5271688779:AAFxKXM7_k0e01QP_OwENBd1gdpSkJVULJw');
+$.TGUserIDs = JSON.parse($.getData('1031901918') || '[]');
 
 if (_TGUserID) {
   $.TGUserIDs.push(_TGUserID);
