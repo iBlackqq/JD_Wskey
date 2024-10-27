@@ -20,7 +20,7 @@ const _TGUserID = $.getData('id77_TGUserID');
 
 // 从 BoxJS 中读取变量
 $.TGBotToken = '5248743119:AAFgKBaOYV33hEWggbvlAzHF28k64fGDSU4';
-$.TGUserIDs = JSON.parse($.getData('1031901918') || '[-1001717594077]');
+$.TGUserIDs = JSON.parse($.getData('1031901918') || '[1031901918]');
 
 if (_TGUserID) {
   $.TGUserIDs.push(_TGUserID);
